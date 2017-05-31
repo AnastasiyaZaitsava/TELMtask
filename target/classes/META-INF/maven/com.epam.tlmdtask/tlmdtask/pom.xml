@@ -4,13 +4,53 @@
   <artifactId>tlmdtask</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>tlmdtask</name>
+  <packaging>jar</packaging>
   
+   <properties>
+        <jdk.version>1.5</jdk.version>
+    </properties>
+ 
+    <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+            <source>${jdk.version}</source>
+            <target>${jdk.version}</target>
+        </configuration>
+      </plugin>
+        <plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-jar-plugin</artifactId>
+		  <version>2.4</version>
+		  <configuration>
+		      <archive>
+		    	  <manifest>
+		    	  	<addClasspath>true</addClasspath>
+		    	  	<mainClass>com.epam.tlmd.main.MainClass</mainClass>
+                    <packageName>com.epam.tlmd.main</packageName>
+		     	  </manifest>
+    	      </archive>
+  		  </configuration>
+ 	   </plugin>
+    </plugins>
+    </build>
+  
+ 
+    
   <dependencies>
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-java</artifactId>
         <version>3.4.0</version>
-
     </dependency>
+    
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.10</version>
+        </dependency>
      </dependencies>
 </project>

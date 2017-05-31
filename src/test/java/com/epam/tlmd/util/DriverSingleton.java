@@ -19,11 +19,13 @@ public class DriverSingleton {
 
     public static WebDriver getDriver()
     {
-   // 	System.setProperty("webdriver.gecko.driver", "C:/Gecko/geckodriver.exe");
         if (null == driver){
         	
-        	//DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-        	DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        	//String browserName = System.getProperty("browser.name");
+        	DesiredCapabilities capabilities = setDesireCapabilities();
+        	/*if(browserName.equals("chrome")){
+        		capabilities = DesiredCapabilities.chrome();
+        	}*/
             capabilities.setCapability("platform", Platform.WINDOWS);
             try {
             	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
@@ -31,11 +33,36 @@ public class DriverSingleton {
             			// TODO Auto-generated catch block
             	e.printStackTrace();
             }
-           driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
-           driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+            //not working with firefox
+     //      driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);  
+     //      driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
            driver.manage().window().maximize();
         }
         return driver;
+    }
+    
+    private static DesiredCapabilities setDesireCapabilities() {
+        DesiredCapabilities capability;
+        String browserName = System.getProperty("browser.name");
+        if(browserName != null){
+	        switch (browserName.toLowerCase()) {
+	            case "firefox":
+	                capability = DesiredCapabilities.firefox();
+	                break;
+	            case "chrome":
+	                capability = DesiredCapabilities.chrome();
+	                break;
+	       
+	            default:
+	            	capability = DesiredCapabilities.firefox();
+	                break;
+	        }
+        }
+        else{
+        	capability = DesiredCapabilities.firefox();
+        }
+
+        return capability;
     }
 
     public static void closeDriver()

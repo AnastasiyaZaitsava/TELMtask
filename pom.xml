@@ -7,37 +7,10 @@
   <packaging>jar</packaging>
   
    <properties>
-        <jdk.version>1.5</jdk.version>
+        <jdk.version>1.7</jdk.version>
+        <browser.name>firefox</browser.name>
+        <browser.version>53.0.3</browser.version>
     </properties>
- 
-    <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-            <source>${jdk.version}</source>
-            <target>${jdk.version}</target>
-        </configuration>
-      </plugin>
-        <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-jar-plugin</artifactId>
-		  <version>2.4</version>
-		  <configuration>
-		      <archive>
-		    	  <manifest>
-		    	  	<addClasspath>true</addClasspath>
-		    	  	<mainClass>com.epam.tlmd.main.MainClass</mainClass>
-                    <packageName>com.epam.tlmd.main</packageName>
-		     	  </manifest>
-    	      </archive>
-  		  </configuration>
- 	   </plugin>
-    </plugins>
-    </build>
-  
  
     
   <dependencies>

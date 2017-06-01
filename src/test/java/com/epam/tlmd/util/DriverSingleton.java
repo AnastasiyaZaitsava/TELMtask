@@ -20,17 +20,10 @@ public class DriverSingleton {
     public static WebDriver getDriver()
     {
         if (null == driver){
-        	
-        	//String browserName = System.getProperty("browser.name");
-        	DesiredCapabilities capabilities = setDesireCapabilities();
-        	/*if(browserName.equals("chrome")){
-        		capabilities = DesiredCapabilities.chrome();
-        	}*/
-            capabilities.setCapability("platform", Platform.WINDOWS);
+        	DesiredCapabilities capabilities = Init.setDesiredCapabilities();
             try {
             	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
             } catch (MalformedURLException e) {
-            			// TODO Auto-generated catch block
             	e.printStackTrace();
             }
             //not working with firefox

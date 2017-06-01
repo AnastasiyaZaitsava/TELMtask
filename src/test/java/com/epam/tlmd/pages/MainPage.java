@@ -3,10 +3,14 @@ package com.epam.tlmd.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import com.epam.tlmd.util.Init;
+
 public class MainPage {
 	
 	 private WebDriver driver;
-	 private final String BASE_URL = "http://www.telemundo.com/";
+	// private final String BASE_URL = "http://www.telemundo.com/";
+	 private final String BASE_URL = Init.setEnviroment();
+	 
 
 	public MainPage(WebDriver driver) {
 		this.driver = driver;

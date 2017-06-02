@@ -12,4 +12,14 @@ public class AccPage extends AbstractPage{
 	public void openPage() {
 	    driver.navigate().to(BASE_URL);
 	}
+	
+	public boolean checkTitle(){
+		String title = driver.getTitle();
+		if (title.contains("Telemundo")){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

@@ -7,13 +7,20 @@ public class StagePage extends AbstractPage{
 
 	public StagePage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void openPage() {
-		// TODO Auto-generated method stub
 	    driver.navigate().to(BASE_URL);
+	}
+	
+	public boolean checkTitle(){
+		String title = driver.getTitle();
+		if (title.contains("Telemundo")){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 }

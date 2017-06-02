@@ -10,10 +10,18 @@ public class PrPage extends AbstractPage{
 		super(driver);
 	}
 
-	@Override
 	public void openPage() {
-		// TODO Auto-generated method stub
 	    driver.navigate().to(BASE_URL);
+	}
+	
+	public boolean checkTitle(){
+		String title = driver.getTitle();
+		if (title.contains("Telemundo")){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 }

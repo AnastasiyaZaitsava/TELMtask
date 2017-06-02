@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="CheckTitlesSuite">
+	<test name="CheckTitlesTest">
+		<classes>
+			<class name="com.epam.tlmd.tests.CheckTitlesTest">
+				<methods>
+       		   		<exclude name="checkTitleMainPage"/>
+       			</methods>
+     	   </class>
+       	</classes>
+	</test>
+</suite>

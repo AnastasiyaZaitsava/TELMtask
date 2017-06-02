@@ -1,8 +1,6 @@
 package com.epam.tlmd.util;
 
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -34,30 +32,6 @@ public class DriverSingleton {
         return driver;
     }
     
-    private static DesiredCapabilities setDesireCapabilities() {
-        DesiredCapabilities capability;
-        String browserName = System.getProperty("browser.name");
-        if(browserName != null){
-	        switch (browserName.toLowerCase()) {
-	            case "firefox":
-	                capability = DesiredCapabilities.firefox();
-	                break;
-	            case "chrome":
-	                capability = DesiredCapabilities.chrome();
-	                break;
-	       
-	            default:
-	            	capability = DesiredCapabilities.firefox();
-	                break;
-	        }
-        }
-        else{
-        	capability = DesiredCapabilities.firefox();
-        }
-
-        return capability;
-    }
-
     public static void closeDriver()
     {
         driver.quit();

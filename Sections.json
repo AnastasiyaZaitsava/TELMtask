@@ -1,0 +1,38 @@
+{
+  "SeriesYNovelas": {
+	"link": "http://acc.telemundo.com/novelas",
+	"title": "Novelas de Telemundo"
+  },
+  "SuperSeries": {
+	"link": "http://acc.telemundo.com/super-series",
+	"title": "Series de Telemundo"
+  },
+  "Shows": {
+	"link":"http://acc.telemundo.com/shows",
+	"title": "Shows"
+  },
+  "Entretenimiento": {
+	"link": "http://acc.telemundo.com/entretenimiento",
+	"title": "Entretenimiento"
+  },
+  "Videos": {
+	"link": "http://acc.telemundo.com/videos",
+	"title": "Video"
+  },
+  "Noticias": {
+	"link": "http://acc.telemundo.com/noticias",
+	"title": "Noticias"
+  },
+  "Deportes": { 
+	"link": "http://www.telemundodeportes.com",
+	"title": "Telemundo Deportes"
+  },
+  "Mujer": {
+	"link": "http://acc.telemundo.com/mujer-de-hoy",
+	"title": "Mujer"
+  },
+  "Comunidad": {
+	"link": "http://www.telemundo.com/el-poder-en-ti",
+	"title": "Comunidad"
+	}
+}

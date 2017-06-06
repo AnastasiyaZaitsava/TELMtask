@@ -1,6 +1,7 @@
 package com.epam.tlmd.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 
 public abstract class AbstractPage{
@@ -9,6 +10,7 @@ public abstract class AbstractPage{
     
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(this.driver, this);
     }
 
     public abstract void openPage();

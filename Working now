@@ -1,2 +1,4 @@
 Сделано 2 test-suite (пока на один тестовый класс с исключением разных методов)
-Test-suite можно выбрать через -DsuiteXmlFile=
+Test-suite можно выбрать через -DtestSuite=
+Создан test suite с группой групп
+Группу можно выбрать через -DtestGroups=

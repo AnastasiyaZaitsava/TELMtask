@@ -2,12 +2,25 @@
 
 <suite name="CheckTitlesSuite">
 	<test name="CheckTitlesTest">
+		<groups>
+			<define name="WithOpeningNewWindow">
+				<include name = "withLinks.newWindow"/> 
+				<include name = "withHub.newWindow"/>
+			</define>
+			<define name="WithHub">
+				<include name = "withHub.*"/>
+			</define>
+			<define name="WithLinksNewWindow">
+				<include name = "withLinks.newWindow"/>
+			</define>
+			
+			<run>
+			<!--  	<include name = "WithHub"/> -->
+			</run>
+		</groups>
 		<classes>
-			<class name="com.epam.tlmd.tests.CheckTitlesTest">
-				<methods>
-       		   		<exclude name="checkTitleMainPage"/>
-       			</methods>
-     	   </class>
-       	</classes>
+			<class name = "com.epam.tlmd.tests.CheckTitlesWithSectionHubTest"/>
+			<class name = "com.epam.tlmd.tests.CheckTitlesWithLinksTest"/>
+		</classes>
 	</test>
 </suite>

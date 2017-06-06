@@ -13,7 +13,7 @@ public class CheckTitlesWithLinksTest {
 	
 	private Steps steps;
 	
-	@BeforeSuite(description = "Init", groups = {"withLinks.oneWindow","withLinks.newWindow"})
+	@BeforeSuite(description = "Init", alwaysRun = true)
      public void setUp()  {
 		steps = new Steps();
 		steps.initDriver();
@@ -104,7 +104,7 @@ public class CheckTitlesWithLinksTest {
 				
   }
 
-    @AfterSuite(description = "Stop Browser", groups = {"withLinks.oneWindow","withLinks.newWindow"})
+    @AfterSuite(description = "Stop Browser", alwaysRun = true)
      public void stopBrowser()  {
     	DriverSingleton.closeDriver();
      }

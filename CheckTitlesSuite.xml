@@ -13,7 +13,9 @@
 			<define name="WithLinksNewWindow">
 				<include name = "withLinks.newWindow"/>
 			</define>
-			
+			<define name="WithLinksAllWindows">
+				<include name = "withLinks.*Window"/>
+			</define>
 			<run>
 			<!--  	<include name = "WithHub"/> -->
 			</run>

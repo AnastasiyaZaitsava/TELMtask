@@ -37,7 +37,6 @@ public class Init {
 			else{
 				enviroment = "http://telemundo.com/";
 			}
-			
 		}
 		else{
 			enviroment = "http://www.telemundo.com/";
@@ -64,8 +63,6 @@ public class Init {
         else{
         	capability = DesiredCapabilities.chrome();
         }
-
         return capability;
-		
 	}
 }

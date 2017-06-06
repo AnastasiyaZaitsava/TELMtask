@@ -1,114 +1,107 @@
 package com.epam.tlmd.tests;
 
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import com.epam.tlmd.steps.Steps;
 import com.epam.tlmd.util.DriverSingleton;
-import com.epam.tlmd.util.SectionsJSON;
 
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 
 public class CheckTitlesWithSectionHubTest {
-	private static SectionsJSON sections;
 	private Steps steps;
 	
-	@BeforeTest(description = "Init browser")
+	@BeforeTest(description = "Init browser", groups = {"withHub.oneWindow", "withHub.newWindow"})
      public void setUp()  {
 		steps = new Steps();
 		steps.initDriver();
+		steps.setSections();
      }
   
-	@BeforeTest(description = "Read json with sections")
-    public void getSections()  {
-		sections = new SectionsJSON();
-		sections.readSections("Sections.json");
-    }
-	
-	@BeforeMethod
+		
+	@BeforeMethod(groups = {"withHub.oneWindow", "withHub.newWindow"})
 	public void beforeMethod() {
 		steps.openAccPage();
 	}
 
 
 	
-	@Test
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleNovelasPage() {
-		JSONObject section = sections.getSection("SeriesYNovelas");
+		JSONObject section = steps.getSection("SeriesYNovelas");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("SeriesYNovelas");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 			
   }
-	/*@Test
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleSuperSeriesPage() {
-		JSONObject section = sections.getSection("SuperSeries");
+		JSONObject section = steps.getSection("SuperSeries");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("SuperSeries");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 			
   }
-	@Test
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleShowsPage() {
-		JSONObject section = sections.getSection("Shows");
+		JSONObject section = steps.getSection("Shows");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("Shows");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 			
   }
-	@Test
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleEntretenimientoPage() {
-		JSONObject section = sections.getSection("Entretenimiento");
+		JSONObject section = steps.getSection("Entretenimiento");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("Entretenimiento");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 			
   }
-	@Test 
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleVideosPage() {
-		JSONObject section = sections.getSection("Videos");
+		JSONObject section = steps.getSection("Videos");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("Videos");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 			
   }
-	@Test 
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleNoticiasPage() {
-		JSONObject section = sections.getSection("Noticias");
+		JSONObject section = steps.getSection("Noticias");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("Noticias");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 			
   }
-	@Test 
+	@Test (groups = "withHub.newWindow")
 	public void checkTitleDeportesPage() {
-		JSONObject section = sections.getSection("Deportes");
+		JSONObject section = steps.getSection("Deportes");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("Deportes");
+		steps.switchToWindow();
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 			
   }
-	@Test 
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleMujerPage() {
-		JSONObject section = sections.getSection("Mujer");
+		JSONObject section = steps.getSection("Mujer");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("Mujer");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 				
   }
-	@Test 
+	@Test (groups = "withHub.oneWindow")
 	public void checkTitleComunidadPage() {
-		JSONObject section = sections.getSection("Comunidad");
+		JSONObject section = steps.getSection("Comunidad");
 		String expTitle = (String) section.get("title");
 		steps.openPageFromHub("Comunidad");
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 				
-  }*/
+  }
 
-    @AfterTest(description = "Stop Browser")
+    @AfterTest(description = "Stop Browser", groups = {"withHub.oneWindow", "withHub.newWindow", "withHub.*"})
      public void stopBrowser()  {
     	DriverSingleton.closeDriver();
      }

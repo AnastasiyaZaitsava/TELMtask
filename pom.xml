@@ -11,7 +11,8 @@
         <browser.name>firefox</browser.name>
         <browser.version>53.0.3</browser.version>
         <enviroment>http://www.telemundo.com/</enviroment>
-        <suiteXmlFile>CheckTitlesSuite.xml</suiteXmlFile>
+        <testSuite>CheckTitlesSuite.xml</testSuite>
+        <testGroups>WithLinksNewWindow</testGroups>
     </properties>
  <build>
  	<plugins>
@@ -21,8 +22,9 @@
              <version>2.20</version>
             <configuration>
                   <suiteXmlFiles>
-        		    <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+        		    <suiteXmlFile>${testSuite}</suiteXmlFile>
       		    </suiteXmlFiles>
+      		    <groups>${testGroups}</groups>
             </configuration>
         </plugin>
     </plugins>

@@ -3,26 +3,23 @@
 <suite name="CheckTitlesSuite">
 	<test name="CheckTitlesTest">
 		<groups>
-			<define name="WithOpeningNewWindow">
-				<include name = "withLinks.newWindow"/> 
-				<include name = "withHub.newWindow"/>
+			
+			<define name="AllTests">
+				<include name = "withHub"/>
+				<include name = "withLinks"/>
+			</define>
+			<define name="WithLinks">
+				<include name = "withLinks"/>
 			</define>
 			<define name="WithHub">
-				<include name = "withHub.*"/>
-			</define>
-			<define name="WithLinksNewWindow">
-				<include name = "withLinks.newWindow"/>
-			</define>
-			<define name="WithLinksAllWindows">
-				<include name = "withLinks.*Window"/>
+				<include name = "withHub"/>
 			</define>
 			<run>
-			<!--  	<include name = "WithHub"/> -->
+			  	<include name = "withLinks"/> 
 			</run>
 		</groups>
-		<classes>
-			<class name = "com.epam.tlmd.tests.CheckTitlesWithSectionHubTest"/>
-			<class name = "com.epam.tlmd.tests.CheckTitlesWithLinksTest"/>
-		</classes>
+		<packages>
+			<package name = "com.epam.tlmd.tests"/>
+		</packages>
 	</test>
 </suite>

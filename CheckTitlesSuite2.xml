@@ -2,12 +2,14 @@
 
 <suite name="CheckTitlesSuite2">
 	<test name="CheckTitlesTest2">
+	
 		<classes>
-			<class name="com.epam.tlmd.tests.CheckTitlesTest">
+			<class name="com.epam.tlmd.tests.CheckTitlesWithLinksTest">
 				<methods>
-       		   		<exclude name="checkTitleDevPage"/>
+       		   		<include name="checkTitle"/>
        			</methods>
      	   </class>
        	</classes>
+       	
 	</test>
 </suite>

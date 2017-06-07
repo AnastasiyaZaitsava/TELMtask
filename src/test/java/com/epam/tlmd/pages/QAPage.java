@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AccPage extends AbstractPage{
+public class QAPage extends AbstractPage{
 	private final String BASE_URL = "http://acc.telemundo.com/";
 	
 	@FindBy(xpath = "//a[contains(text(),'Novelas')]")
@@ -37,7 +37,7 @@ public class AccPage extends AbstractPage{
 	@FindBy(xpath = "//a[contains(text(), 'Comunidad')]")
 	WebElement comunidadButton;
 
-	public AccPage(WebDriver driver) {
+	public QAPage(WebDriver driver) {
 		super(driver);
 	}
 
@@ -72,13 +72,5 @@ public class AccPage extends AbstractPage{
 	public void goToNoticias() {
 	    noticiasButton.click();
 	}
-	public boolean checkTitle(){
-		String title = driver.getTitle();
-		if (title.contains("Telemundo")){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
+	
 }

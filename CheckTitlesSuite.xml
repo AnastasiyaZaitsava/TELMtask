@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="CheckTitlesSuite">
+	<test name="CheckTitlesTest">
+		<groups>
+			
+			<define name="AllTests">
+				<include name = "withHub"/>
+				<include name = "withLinks"/>
+			</define>
+			<define name="WithLinks">
+				<include name = "withLinks"/>
+			</define>
+			<define name="WithHub">
+				<include name = "withHub"/>
+			</define>
+			<run>
+			  	<include name = "withLinks"/> 
+			</run>
+		</groups>
+		<packages>
+			<package name = "com.epam.tlmd.tests"/>
+		</packages>
+	</test>
+</suite>

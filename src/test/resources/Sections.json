@@ -1,0 +1,40 @@
+{
+"Sections":{
+	  "SeriesYNovelas": {
+		"link": "novelas",
+		"title": "Novelas de Telemundo"
+	  },
+	  "SuperSeries": {
+		"link": "super-series",
+		"title": "Series de Telemundo"
+	  },
+	  "Shows": {
+		"link":"shows",
+		"title": "Shows"
+	  },
+	  "Entretenimiento": {
+		"link": "entretenimiento",
+		"title": "Entretenimiento"
+	  },
+	  "Videos": {
+		"link": "videos",
+		"title": "Video"
+	  },
+	  "Noticias": {
+		"link": "noticias",
+		"title": "Noticias"
+	  },
+	  "Deportes": { 
+		"link": "http://www.telemundodeportes.com",
+		"title": "Telemundo Deportes"
+	  },
+	  "Mujer": {
+		"link": "mujer-de-hoy",
+		"title": "Mujer"
+	  },
+	  "Comunidad": {
+		"link": "el-poder-en-ti",
+		"title": "Comunidad"
+		}
+	}
+}

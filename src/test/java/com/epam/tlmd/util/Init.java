@@ -1,5 +1,9 @@
 package com.epam.tlmd.util;
 
+import java.io.FileReader;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -17,33 +21,6 @@ public class Init {
         return capabilities;
 	}
 	
-	public static String setEnviroment(){
-		String enviroment;
-		String enteredEnv = System.getProperty("enviroment");
-		if (enteredEnv != null){
-			enteredEnv.toLowerCase();
-			if(enteredEnv.contains("acc")){
-				enviroment = "http://acc.telemundo.com/";
-			}
-			else if (enteredEnv.contains("dev")){
-				enviroment = "http://dev.telemundo.com/";
-			}
-			else if (enteredEnv.contains("stage")){
-				enviroment = "http://stage.telemundo.com/";
-			}
-			else if (enteredEnv.contains("tlmd-XXXX.pr")){
-				enviroment = "http://tlmd-XXXX.pr.telemundo.com/";
-			}
-			else{
-				enviroment = "http://telemundo.com/";
-			}
-			
-		}
-		else{
-			enviroment = "http://www.telemundo.com/";
-		}
-		return enviroment;
-	}
 	private static DesiredCapabilities setBrowser(){
 		DesiredCapabilities capability;
         String browserName = System.getProperty("browser.name");
@@ -64,8 +41,38 @@ public class Init {
         else{
         	capability = DesiredCapabilities.chrome();
         }
-
         return capability;
-		
+	}
+	
+	public static String getEnviroment(){
+		String enviroment  = System.getProperty("enviroment");
+		if (enviroment == null){
+			enviroment = getDefault("enviroment");
+		}
+		return enviroment;
+	}
+	
+	public static String getRemoteWD(){
+		String remoteWDurl  = System.getProperty("remoteWDurl");
+		if (remoteWDurl == null){
+			remoteWDurl = getDefault("remoteWDurl");
+		}		
+		return remoteWDurl;
+	}
+	
+	public static String getDefault(String settingsName){
+		JSONParser parser = new JSONParser();
+		JSONObject settings = new JSONObject();
+		ClassLoader cl = Thread.currentThread().getContextClassLoader();
+		String filePath = cl.getResource("DefaultSettings.json").getPath();
+		String setting = "";
+		try {
+			settings = (JSONObject) parser.parse(new FileReader(filePath));
+			setting = (String) settings.get(settingsName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return setting;
 	}
 }

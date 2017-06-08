@@ -1,5 +1,5 @@
-Запускается через mvn test
-Работает выбор браузера через -Dbrowser.name=
-Работает выбор версии браузера через -Dbrowser.version= (Chrome работает, Firefox ругается)
-Работает выбор enviroment через -Denviroment= (если я правильно поняла, что имелось в виду). 
-Пока настроено через выбор ссылки стартовой страницы, в ближайшее время переделаю под разные Page.
+2 test-suites 
+Test-suite can be chosen using -DtestSuite=
+Created test suite with group of groups
+Group can be chosen using -DtestGroups=
+JSON file with default settings was added

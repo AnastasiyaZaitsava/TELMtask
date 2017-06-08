@@ -1,8 +1,6 @@
 package com.epam.tlmd.util;
 
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -21,8 +19,9 @@ public class DriverSingleton {
     {
         if (null == driver){
         	DesiredCapabilities capabilities = Init.setDesiredCapabilities();
+        	String remoteWDurl = Init.getRemoteWD();
             try {
-            	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+            	driver = new RemoteWebDriver(new URL(remoteWDurl), capabilities);
             } catch (MalformedURLException e) {
             	e.printStackTrace();
             }
@@ -34,30 +33,6 @@ public class DriverSingleton {
         return driver;
     }
     
-    private static DesiredCapabilities setDesireCapabilities() {
-        DesiredCapabilities capability;
-        String browserName = System.getProperty("browser.name");
-        if(browserName != null){
-	        switch (browserName.toLowerCase()) {
-	            case "firefox":
-	                capability = DesiredCapabilities.firefox();
-	                break;
-	            case "chrome":
-	                capability = DesiredCapabilities.chrome();
-	                break;
-	       
-	            default:
-	            	capability = DesiredCapabilities.firefox();
-	                break;
-	        }
-        }
-        else{
-        	capability = DesiredCapabilities.firefox();
-        }
-
-        return capability;
-    }
-
     public static void closeDriver()
     {
         driver.quit();

@@ -1,4 +1,5 @@
-Сделано 2 test-suite (пока на один тестовый класс с исключением разных методов)
-Test-suite можно выбрать через -DtestSuite=
-Создан test suite с группой групп
-Группу можно выбрать через -DtestGroups=
+2 test-suites 
+Test-suite can be chosen using -DtestSuite=
+Created test suite with group of groups
+Group can be chosen using -DtestGroups=
+JSON file with default settings was added

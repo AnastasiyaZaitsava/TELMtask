@@ -19,8 +19,9 @@ public class DriverSingleton {
     {
         if (null == driver){
         	DesiredCapabilities capabilities = Init.setDesiredCapabilities();
+        	String remoteWDurl = Init.getRemoteWD();
             try {
-            	driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+            	driver = new RemoteWebDriver(new URL(remoteWDurl), capabilities);
             } catch (MalformedURLException e) {
             	e.printStackTrace();
             }

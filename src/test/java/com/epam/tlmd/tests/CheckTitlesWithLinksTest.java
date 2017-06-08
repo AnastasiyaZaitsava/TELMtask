@@ -2,6 +2,7 @@ package com.epam.tlmd.tests;
 
 import com.epam.tlmd.steps.Steps;
 import com.epam.tlmd.util.DriverSingleton;
+import com.epam.tlmd.util.Init;
 import com.epam.tlmd.util.SectionsJSON;
 
 import java.util.ArrayList;
@@ -12,17 +13,17 @@ import org.testng.annotations.*;
 
 public class CheckTitlesWithLinksTest {
 
-	private Steps steps;
-	private String enviroment = System.getProperty("enviroment");
+	private Steps steps = new Steps();
+	private String enviroment;
 	
-	@BeforeSuite(description = "Init", groups = "withLinks")
+	@BeforeSuite(description = "Init", alwaysRun = true)
      public void setUp()  {
-		steps = new Steps();
 		steps.initDriver();
-		steps.setSections();
+		enviroment = Init.getEnviroment();
      }
 	@DataProvider ()
 	public Object[][] sectionsData() {
+		steps.setSections("Sections.json");
 		ArrayList<String> sectionsNames = steps.getSectionNames();
 	    return new Object[][]{
 	      {sectionsNames.get(0), steps.getSectionLink(sectionsNames.get(0)), steps.getExpectedTitle(sectionsNames.get(0))},
@@ -47,8 +48,6 @@ public class CheckTitlesWithLinksTest {
 		}
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 	}
-	
-
 
     @AfterSuite(description = "Stop Browser", groups = "withLinks")
      public void stopBrowser()  {

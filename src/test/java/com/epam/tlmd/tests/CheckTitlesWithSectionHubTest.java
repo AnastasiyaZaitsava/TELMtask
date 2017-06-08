@@ -4,6 +4,7 @@ import org.testng.annotations.*;
 
 import com.epam.tlmd.steps.Steps;
 import com.epam.tlmd.util.DriverSingleton;
+import com.epam.tlmd.util.Init;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -13,14 +14,13 @@ import org.json.simple.JSONObject;
 import org.testng.Assert;
 
 public class CheckTitlesWithSectionHubTest {
-	private Steps steps;
+	private Steps steps= new Steps();
 	private String enviroment;
 	
 	@BeforeSuite(description = "Init browser", groups = "withHub")
      public void setUp()  {
-		steps = new Steps();
 		steps.initDriver();
-		steps.setSections();
+		enviroment = Init.getEnviroment();
      }
   
 	@BeforeMethod(groups = "withHub")
@@ -30,6 +30,7 @@ public class CheckTitlesWithSectionHubTest {
 
 	@DataProvider ()
 	public Object[][] sectionsData() {
+		steps.setSections("Sections.json");
 		ArrayList<String> sectionsNames = steps.getSectionNames();
 	    return new Object[][]{
 	      {sectionsNames.get(0), steps.getExpectedTitle(sectionsNames.get(0))},

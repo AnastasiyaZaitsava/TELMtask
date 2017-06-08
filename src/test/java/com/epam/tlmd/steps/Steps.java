@@ -24,11 +24,9 @@ public class Steps {
     	driver.navigate().to(link);
     }
     
-    public void setSections()  {
+    public void setSections(String fileName)  {
   		sectionsHub = new SectionsJSON();
-  		ClassLoader cl = this.getClass().getClassLoader();
-  		cl.getResource("Sections.json");
-  		sectionsHub.readSections(cl.getResource("Sections.json"));
+  		sectionsHub.readSections(fileName);
       }
     
     public JSONObject getSections()  {

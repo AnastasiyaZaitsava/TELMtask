@@ -61,18 +61,22 @@ public class Init {
 	}
 	
 	public static String getDefault(String settingsName){
+		JSONObject settings = readFile("DefaultSettings.json");
+		String setting = (String) settings.get(settingsName);
+		return setting;
+	}
+	
+	public static JSONObject readFile(String fileName){
 		JSONParser parser = new JSONParser();
-		JSONObject settings = new JSONObject();
+		JSONObject fileObj = new JSONObject();
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-		String filePath = cl.getResource("DefaultSettings.json").getPath();
-		String setting = "";
+		String filePath = cl.getResource(fileName).getPath();
 		try {
-			settings = (JSONObject) parser.parse(new FileReader(filePath));
-			setting = (String) settings.get(settingsName);
+			fileObj = (JSONObject) parser.parse(new FileReader(filePath));
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		return setting;
+		return fileObj;
 	}
 }

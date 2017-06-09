@@ -62,14 +62,10 @@ public class Steps {
     	for(String winHandle : driver.getWindowHandles()){
     		driver.switchTo().window(winHandle);
     	}
-
     }
     
     public void closeDriver(){
         driver.close();
     }
-
-	
-
 
 }

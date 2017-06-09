@@ -1,0 +1,4 @@
+{
+	"remoteWDurl": "http://localhost:4444/wd/hub",
+	"enviroment": "http://acc.telemundo.com/"
+}

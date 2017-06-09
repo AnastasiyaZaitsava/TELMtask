@@ -35,17 +35,15 @@ public class CheckTitlesWithSectionHubTest {
 		steps.setSections("Sections.json");
 		ArrayList<JSONObject> sections = steps.getSections();
 		List<Object[]> list = new ArrayList<Object[]>();
-		int sectionNumber = 1;
 		for (JSONObject section : sections) {
-			list.add(new Object[]{sectionNumber, section.get("title")});
-			sectionNumber++;
+			list.add(new Object[]{section.get("link"), section.get("title")});
 		}
 		return list.iterator();
 	}
 
 	@Test (dataProvider = "sectionsData", groups = "withHub")
-	public void checkTitle(int sectionNumber, String expTitle){
-		steps.openPageFromHub(sectionNumber);
+	public void checkTitle(String sectionLink, String expTitle){
+		steps.openPageFromHub(sectionLink);
 		steps.switchToWindow();
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 	}

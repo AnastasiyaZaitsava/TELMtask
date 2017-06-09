@@ -6,8 +6,9 @@ import java.util.Set;
 
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-import com.epam.tlmd.pages.QAPage;
+import com.epam.tlmd.pages.MainPage;
 import com.epam.tlmd.util.DriverSingleton;
 import com.epam.tlmd.util.SectionsJSON;
 
@@ -29,31 +30,16 @@ public class Steps {
   		sectionsHub.readSections(fileName);
       }
     
-    public JSONObject getSections()  {
-  		return sectionsHub.getSections();
-
-      }
-    public String getSectionLink(String sectionName)  {
-  		return (String) sectionsHub.getSection(sectionName).get("link");
-
-      }
-    public String getExpectedTitle(String sectionName)  {
-  		return (String) sectionsHub.getSection(sectionName).get("title");
-
-      }
-    public JSONObject getSection(String sectionName){
-		JSONObject section = sectionsHub.getSection(sectionName);
-		return section;
-	}
-    public ArrayList<String> getSectionNames(){
-		ArrayList<String> sectionNames = new ArrayList<String>();
-		Set sections = sectionsHub.getSections().keySet();
-		Iterator it = sections.iterator();
-		while(it.hasNext()){
-			sectionNames.add(it.next().toString());
-		}
-		return sectionNames;
-	}
+    public ArrayList<JSONObject> getSections()  {
+    	Iterator<?> it = sectionsHub.getSections(); 
+    	ArrayList<JSONObject> sections = new ArrayList<JSONObject>(); 
+        while (it.hasNext()) {
+            JSONObject section = (JSONObject) it.next();
+            sections.add(section);
+        }
+        return sections;
+    }
+  
     public boolean checkPageTitle(String expTitle){
     	String actTitle = driver.getTitle();
     	System.out.println("ACTUAL TITLE: " + actTitle);
@@ -65,39 +51,10 @@ public class Steps {
     	}
     }
 
-    public void openPageFromHub(String sectionName){
-    	QAPage qaPage = new QAPage(driver);
-    	switch(sectionName) {
-	    	case "SeriesYNovelas":
-	    		qaPage.goToNovelas();
-	    		break;
-		    case "SuperSeries":
-				qaPage.goToSeries();
-				break;
-			case "Shows":
-				qaPage.goToShows();
-				break;
-			case "Entretenimiento":
-				qaPage.goToEntretenimiento();
-				break;
-			case "Videos":
-				qaPage.goToVideos();
-				break;
-			case "Noticias":
-				qaPage.goToNoticias();
-				break;
-			case "Deportes":
-				qaPage.goToDeportes();
-				break;
-			case "Mujer":
-				qaPage.goToMujer();
-				break;
-			case "Comunidad":
-				qaPage.goToComunidad();
-				break;
-			default:
-				break;
-    	}
+    public void openPageFromHub(int sectionNumber){
+    	MainPage mainPage = new MainPage(driver);
+    	WebElement button = mainPage.menuLink(sectionNumber);
+    	button.click();
     }
     
     public void switchToWindow(){
@@ -107,10 +64,6 @@ public class Steps {
     	}
 
     }
-    public void openQAPage() {
-		QAPage qaPage = new QAPage(driver);
-		qaPage.openPage();
-	}
     
     public void closeDriver(){
         driver.close();

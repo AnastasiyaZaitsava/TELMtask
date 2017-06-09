@@ -51,9 +51,9 @@ public class Steps {
     	}
     }
 
-    public void openPageFromHub(int sectionNumber){
+    public void openPageFromHub(String sectionLink){
     	MainPage mainPage = new MainPage(driver);
-    	WebElement button = mainPage.menuLink(sectionNumber);
+    	WebElement button = mainPage.menuLink(sectionLink);
     	button.click();
     }
     

@@ -9,6 +9,8 @@ import com.epam.tlmd.util.Init;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.testng.Assert;
@@ -29,25 +31,21 @@ public class CheckTitlesWithSectionHubTest {
 	}
 
 	@DataProvider ()
-	public Object[][] sectionsData() {
+	public Iterator<Object[]> sectionsData() {
 		steps.setSections("Sections.json");
-		ArrayList<String> sectionsNames = steps.getSectionNames();
-	    return new Object[][]{
-	      {sectionsNames.get(0), steps.getExpectedTitle(sectionsNames.get(0))},
-	      {sectionsNames.get(1), steps.getExpectedTitle(sectionsNames.get(1))},
-	      {sectionsNames.get(2), steps.getExpectedTitle(sectionsNames.get(2))},
-	      {sectionsNames.get(3), steps.getExpectedTitle(sectionsNames.get(3))},
-	      {sectionsNames.get(4), steps.getExpectedTitle(sectionsNames.get(4))},
-	      {sectionsNames.get(5), steps.getExpectedTitle(sectionsNames.get(5))},
-	      {sectionsNames.get(6), steps.getExpectedTitle(sectionsNames.get(6))},
-	      {sectionsNames.get(7), steps.getExpectedTitle(sectionsNames.get(7))},
-	      {sectionsNames.get(8), steps.getExpectedTitle(sectionsNames.get(8))},
-	    };
-	  }
+		ArrayList<JSONObject> sections = steps.getSections();
+		List<Object[]> list = new ArrayList<Object[]>();
+		int sectionNumber = 1;
+		for (JSONObject section : sections) {
+			list.add(new Object[]{sectionNumber, section.get("title")});
+			sectionNumber++;
+		}
+		return list.iterator();
+	}
 
 	@Test (dataProvider = "sectionsData", groups = "withHub")
-	public void checkTitle(String sectionName, String expTitle){
-		steps.openPageFromHub(sectionName);
+	public void checkTitle(int sectionNumber, String expTitle){
+		steps.openPageFromHub(sectionNumber);
 		steps.switchToWindow();
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
 	}

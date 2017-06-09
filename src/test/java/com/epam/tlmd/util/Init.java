@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Reporter;
 
 public class Init {
 
@@ -75,7 +76,7 @@ public class Init {
 			fileObj = (JSONObject) parser.parse(new FileReader(filePath));
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			Reporter.log(e.getMessage());
 		} 
 		return fileObj;
 	}

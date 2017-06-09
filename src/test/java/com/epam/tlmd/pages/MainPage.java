@@ -4,6 +4,7 @@ package com.epam.tlmd.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Reporter;
 
 import com.epam.tlmd.util.Init;
 
@@ -21,6 +22,7 @@ public class MainPage extends AbstractPage{
 
 	public void openPage() {
 	    driver.navigate().to(Init.getEnviroment());
+	    Reporter.log("Test enviroment: " + Init.getEnviroment());
 	}
 	
 }

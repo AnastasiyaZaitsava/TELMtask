@@ -15,5 +15,4 @@ public abstract class AbstractPage{
 
     public abstract void openPage();
 	
-
 }

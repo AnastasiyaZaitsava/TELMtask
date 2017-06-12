@@ -14,7 +14,8 @@
         <enviroment>http://acc.telemundo.com/</enviroment>
         <testSuite>CheckTitlesSuite.xml</testSuite>
         <testGroups>WithLinks</testGroups>
-    </properties>
+	
+	    </properties>
  <build>
  	<plugins>
 	  <plugin>
@@ -23,15 +24,30 @@
              <version>2.20</version>
             <configuration>
             <properties>
-                        <!-- Setting ReportNG listeners -->
-                        <property>
-                            <name>listener</name> 
-                            <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>
-                        </property>
-                    </properties>
-            
+                  <!-- Setting ReportNG listeners -->
+                  <property>
+                      <name>listener</name> 
+                      <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>
+                  </property>
+                  
+      <!--      <property>
+	     <name>parallel</name>
+	     <value>methods</value>
+	   </property>
+		<property>
+	     <name>threadCount</name>
+	     <value>2</value>
+	   </property>
+	 	<property>
+	     <name>dataproviderthreadcount</name>
+	     <value>2</value>
+	   </property>-->
+               </properties>
+		  	 		<parellel>methods</parellel>
+		            <threadCountMethods>3</threadCountMethods>
                 <suiteXmlFiles>
-        		    <suiteXmlFile>${testSuite}</suiteXmlFile>
+        		    <suiteXmlFile>{$testSuite}</suiteXmlFile>
+        		    
       		    </suiteXmlFiles>
       		    <groups>${testGroups}</groups>
       		    <testEnviroment>${enviroment}</testEnviroment>

@@ -16,16 +16,18 @@ import org.testng.annotations.*;
 
 public class CheckTitlesWithLinksTest {
 
-	private Steps steps = new Steps();
+	private Steps steps;
 	private String enviroment;
 	
-	@BeforeSuite(description = "Init", groups = "withLinks")//alwaysRun = true)
+/*	@BeforeMethod(description = "Init", groups = "withLinks")//alwaysRun = true)
      public void setUp()  {
+		steps = new Steps();
 		steps.initDriver();
 		enviroment = Init.getEnviroment();
-     }
+     }*/
 	@DataProvider ()
 	public Iterator<Object[]> sectionsData() {
+		Steps steps = new Steps();
 		steps.setSections("Sections.json");
 		ArrayList<JSONObject> sections = steps.getSections();
 		List<Object[]> list = new ArrayList<Object[]>();
@@ -35,8 +37,11 @@ public class CheckTitlesWithLinksTest {
 	    return list.iterator();
 	  }
 	
-	@Test (dataProvider = "sectionsData", groups = "withLinks")
+	@Test (dataProvider = "sectionsData", groups = "withLinks", threadPoolSize = 3)
 	public void checkTitle(String sectionName, String sectionLink, String expTitle){
+		Steps steps = new Steps();
+		steps.initDriver();
+		enviroment = Init.getEnviroment();
 		if(sectionName.equals("Deportes")){
 			steps.openLink(sectionLink);
 		}
@@ -45,12 +50,13 @@ public class CheckTitlesWithLinksTest {
 			steps.openLink(enviroment + sectionLink);
 		}
 		Assert.assertTrue(steps.checkPageTitle(expTitle));
+		steps.closeDriver();
 	}
 
-    @AfterSuite(description = "Stop Browser", groups = "withLinks")
+ /*   @AfterMethod(description = "Stop Browser", groups = "withLinks")
      public void stopBrowser()  {
-    	DriverSingleton.closeDriver();
-     }
+    	steps.closeDriver();
+     }*/
 
    
  

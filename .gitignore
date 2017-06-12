@@ -3,3 +3,4 @@ target/
 test-output/
 .classpath
 .settings
+src/test/java/com/epam/tlmd/util/Init.java

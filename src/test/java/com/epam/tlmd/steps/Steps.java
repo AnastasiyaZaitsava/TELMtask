@@ -19,7 +19,8 @@ public class Steps {
 	private static SectionsJSON sectionsHub;
 
     public void initDriver(){
-        driver = DriverSingleton.getDriver();
+    	DriverSingleton driverInstance = new DriverSingleton();
+        driver = driverInstance.getDriver();
     }
     
     public void openLink(String link){
@@ -57,8 +58,14 @@ public class Steps {
     public void openPageFromHub(String sectionLink){
     	MainPage mainPage = new MainPage(driver);
     	WebElement button = mainPage.menuLink(sectionLink);
-    	Reporter.log("Found section and go to " + button.getText());
+    	System.out.println("Found section and go to " + button.getText());
     	button.click(); 	
+    }
+    
+    public WebElement getSectionButton(String sectionLink){
+    	MainPage mainPage = new MainPage(driver);
+    	WebElement button = mainPage.menuLink(sectionLink);
+    	return button; 	
     }
     
     public void switchToWindow(){
@@ -69,7 +76,8 @@ public class Steps {
     }
     
     public void closeDriver(){
-        driver.close();
+        driver.quit();
+        driver = null;
     }
 
 }

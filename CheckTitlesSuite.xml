@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="CheckTitlesSuite">
+<suite name="CheckTitlesSuite"><!--   parallel="methods" thread-count="3">-->
+<!-- 	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+		 <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+	</listeners>-->
 	<test name="CheckTitlesTest">
 		<groups>
 			
@@ -15,7 +19,7 @@
 				<include name = "withHub"/>
 			</define>
 			<run>
-			  	<include name = "withLinks"/> 
+			  	<include name = "WithHub"/> 
 			</run>
 		</groups>
 		<packages>

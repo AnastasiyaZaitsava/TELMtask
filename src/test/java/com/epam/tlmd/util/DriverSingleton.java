@@ -12,17 +12,16 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverSingleton {
 
-    private static WebDriver driver;
-    private DriverSingleton(){};
+    private WebDriver driver;
+    public DriverSingleton(){};
 
 
-    public static WebDriver getDriver()
+    public WebDriver getDriver()
     {
-        if (null == driver){
         	DesiredCapabilities capabilities = Init.setDesiredCapabilities();
         	String remoteWDurl = Init.getRemoteWD();
             try {
-            	driver = new RemoteWebDriver(new URL(remoteWDurl), capabilities);
+            	this.driver = new RemoteWebDriver(new URL(remoteWDurl), capabilities);
             } catch (MalformedURLException e) {
             	e.printStackTrace();
             	//Reporter.log(e.getMessage());
@@ -31,11 +30,11 @@ public class DriverSingleton {
      //      driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);  
      //      driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
            driver.manage().window().maximize();
-        }
+
         return driver;
     }
     
-    public static void closeDriver()
+    public void closeDriver()
     {
         driver.quit();
         driver = null;

@@ -7,6 +7,7 @@ import java.util.Set;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Reporter;
 
 import com.epam.tlmd.pages.MainPage;
 import com.epam.tlmd.util.DriverSingleton;
@@ -23,6 +24,7 @@ public class Steps {
     
     public void openLink(String link){
     	driver.navigate().to(link);
+    	Reporter.log("Following a link: " + link);
     }
     
     public void setSections(String fileName)  {
@@ -42,7 +44,8 @@ public class Steps {
   
     public boolean checkPageTitle(String expTitle){
     	String actTitle = driver.getTitle();
-    	System.out.println("ACTUAL TITLE: " + actTitle);
+    	Reporter.log("EXPECTED TITLE CONTAINS:" + expTitle);
+    	Reporter.log("ACTUAL TITLE: " + actTitle);
     	if (actTitle.contains(expTitle)){
     		return true;
     	}
@@ -54,7 +57,8 @@ public class Steps {
     public void openPageFromHub(String sectionLink){
     	MainPage mainPage = new MainPage(driver);
     	WebElement button = mainPage.menuLink(sectionLink);
-    	button.click();
+    	Reporter.log("Found section and go to " + button.getText());
+    	button.click(); 	
     }
     
     public void switchToWindow(){

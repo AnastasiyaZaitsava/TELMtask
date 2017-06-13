@@ -3,6 +3,7 @@ package com.epam.tlmd.util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Reporter;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,6 +25,7 @@ public class DriverSingleton {
             	driver = new RemoteWebDriver(new URL(remoteWDurl), capabilities);
             } catch (MalformedURLException e) {
             	e.printStackTrace();
+            	//Reporter.log(e.getMessage());
             }
             //not working with firefox
      //      driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);  

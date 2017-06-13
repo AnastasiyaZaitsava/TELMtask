@@ -11,6 +11,7 @@ import java.util.Iterator;
 
 import org.json.simple.JSONObject;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 
 public class CheckTitlesWithLinksTest {
@@ -18,7 +19,7 @@ public class CheckTitlesWithLinksTest {
 	private Steps steps = new Steps();
 	private String enviroment;
 	
-	@BeforeSuite(description = "Init", alwaysRun = true)
+	@BeforeSuite(description = "Init", groups = "withLinks")//alwaysRun = true)
      public void setUp()  {
 		steps.initDriver();
 		enviroment = Init.getEnviroment();
@@ -40,6 +41,7 @@ public class CheckTitlesWithLinksTest {
 			steps.openLink(sectionLink);
 		}
 		else{
+			Reporter.log("Test enviroment: " + enviroment);
 			steps.openLink(enviroment + sectionLink);
 		}
 		Assert.assertTrue(steps.checkPageTitle(expTitle));

@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Reporter;
 
 public class Init {
 
@@ -25,17 +26,15 @@ public class Init {
 		DesiredCapabilities capability;
         String browserName = System.getProperty("browser.name");
         if(browserName != null){
-	        switch (browserName.toLowerCase()) {
-	            case "firefox":
-	                capability = DesiredCapabilities.firefox();
-	                break;
-	            case "chrome":
-	                capability = DesiredCapabilities.chrome();
-	                break;
-	       
-	            default:
-	            	capability = DesiredCapabilities.chrome();
-	                break;
+        	browserName.toLowerCase();
+        	if(browserName.contains("firefox")){
+        		capability = DesiredCapabilities.firefox();
+        	}
+        	else if (browserName.contains("chrome")){
+	            capability = DesiredCapabilities.chrome();
+        	}
+        	else{
+	            capability = DesiredCapabilities.chrome();
 	        }
         }
         else{
@@ -75,7 +74,7 @@ public class Init {
 			fileObj = (JSONObject) parser.parse(new FileReader(filePath));
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			Reporter.log(e.getMessage());
 		} 
 		return fileObj;
 	}
